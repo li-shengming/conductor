@@ -1,11 +1,16 @@
 buildscript {
 	repositories {
         jcenter()
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
         classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:4.0.1'
         classpath 'org.apache.ant:ant:1.9.7'
+        classpath "gradle.plugin.ua.eshepelyuk:ManifestClasspath:1.0.0"
     }
 }
 plugins {
@@ -16,8 +21,10 @@ plugins {
 // Establish version and status
 ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
 
+apply plugin: 'ua.eshepelyuk.ManifestClasspath'
 apply plugin: 'project-report'
 apply from: "$rootDir/versionsOfDependencies.gradle"
+
 
 allprojects {
     apply plugin: 'idea'
